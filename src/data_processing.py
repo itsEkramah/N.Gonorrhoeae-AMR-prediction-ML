@@ -62,7 +62,7 @@ def preprocess_data(data, target_col, metadata_cols=['Country', 'Continent']):
     """
     # 1. Handle Missing Target
     # Drop rows where target is NaN
-    data = data.dropna(subset=[target_col])
+    data = data.dropna(subset=[target_col]).copy()
     
     # 2. Handle Missing Features
     # For categorical metadata, we can treat NaN as a separate category or drop.
