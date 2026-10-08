@@ -1,0 +1,4 @@
+antibiotic,target,metadata_rows,missing_target,modeling_samples,susceptible,resistant,resistant_prevalence,unitigs,rtab_unitigs,rtab_sample_columns,constant_unitigs,duplicate_profile_rows,duplicate_profile_groups,largest_duplicate_group,conflicting_profile_groups
+Azithromycin,azm_sr,3786,308,3478,3031,447,0.12852213916043703,515,515,3971,25,688,236,17,5
+Ciprofloxacin,cip_sr,3786,698,3088,1660,1428,0.46243523316062174,8873,8873,3971,390,20,10,2,0
+Cefixime,cfx_sr,3786,385,3401,3396,5,0.001470155836518671,384,384,3971,22,1729,416,54,1

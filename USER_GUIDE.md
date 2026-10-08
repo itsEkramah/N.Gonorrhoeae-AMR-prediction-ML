@@ -1,85 +1,30 @@
-# User Guide: Neisseria gonorrhoeae AMR Prediction
+# User guide
 
-This guide will help you run the project step-by-step. It is designed for users with a biological background who may be new to coding.
+Use `N_gonorrhoeae_AMR_reproducible_analysis.ipynb` as the primary notebook. `BIF_COMP_PROJECT.ipynb` is the preserved original submission and is retained for provenance rather than as the recommended execution path.
 
-## 1. Project Overview
+## Run the project
 
-This project uses machine learning to predict whether a bacteria sample (*Neisseria gonorrhoeae*) is resistant to antibiotics based on its DNA (unitigs).
+1. Create and activate a Python 3.13 virtual environment.
+2. Install the pinned packages with `python -m pip install -r requirements.txt`.
+3. Start Jupyter with `python -m jupyter lab`.
+4. Open `N_gonorrhoeae_AMR_reproducible_analysis.ipynb`.
+5. Choose **Restart Kernel and Run All Cells**.
 
-We use five different models to make these predictions:
-1.  **Logistic Regression**: A simple statistical model.
-2.  **Random Forest**: A collection of decision trees.
-3.  **SVM (Support Vector Machine)**: Finds the best boundary between resistant and susceptible samples.
-4.  **XGBoost**: An advanced gradient boosting method.
-5.  **CatBoost**: Another advanced boosting method that handles categorical data well.
+The notebook automatically locates `DATA/metadata.csv`, validates the three unitig files, and recreates the tables and figures under `results/`.
 
-## 2. Files to Keep vs. Delete
+## What to expect
 
-### **KEEP These Files** (Essential for the project)
-*   **`DATA/`**: This folder contains your raw data (`metadata.csv` and `.Rtab` files). **Do not delete.**
-*   **`src/`**: This folder contains the Python code that does the heavy lifting.
-    *   `data_processing.py`: Loads and cleans the data.
-    *   `models.py`: Defines the machine learning models (including XGBoost and CatBoost).
-    *   `evaluation.py`: Creates the graphs and calculates accuracy.
-*   **`main_analysis.ipynb`**: The interactive notebook where you run the analysis and see results.
-*   **`requirements.txt`**: A list of software libraries needed to run the code.
-*   **`README.md`**: General project documentation.
+- Azithromycin and ciprofloxacin are evaluated with grouped five-fold cross-validation.
+- Cefixime is audited but not modelled because only five resistant isolates are available.
+- Selected-model uncertainty is estimated with a 500-resample profile-group bootstrap.
+- Continent-level results are descriptive slices of the out-of-fold predictions, not geographic holdout validation.
+- The final cell writes `results/run_completion.json` only after the expected outputs exist.
 
-### **DELETE These Files** (Temporary or no longer needed)
-You can safely delete these files as they were for testing during development:
-*   `verify_pipeline.py` (We used this to check if the code works, but `main_analysis.ipynb` is what you need now).
-*   `debug_output.txt`
-*   `debug_output_2.txt`
-*   `debug_indices.py`
+## Common problems
 
-## 3. How to Run the Project
+- **Missing package:** confirm that the virtual environment is active and reinstall `requirements.txt`.
+- **Missing data:** confirm that `DATA/` contains `metadata.csv` and all three `*_gwas_filtered_unitigs.Rtab` files.
+- **Wrong notebook:** use the reproducible notebook for the verified result; the original submission is included only to document the project's development.
+- **Slow execution:** the ciprofloxacin matrix has 8,873 unitigs and the notebook includes grouped bootstrap resampling. A complete run can take several minutes depending on the computer.
 
-### Step 1: Install Software (If not already installed)
-You need **Python** and **Jupyter Notebook**. The easiest way is to install **Anaconda**.
-1.  Download Anaconda for your OS (Linux/Windows/Mac).
-2.  Install it following the instructions.
-
-### Step 2: Set Up the Environment
-Open your terminal (or Anaconda Prompt) and navigate to the project folder:
-```bash
-cd /path/to/N.Gonorrhoeae-AMR-prediction-ML
-```
-
-Install the required libraries:
-```bash
-pip install -r requirements.txt
-```
-
-### Step 3: Run the Analysis
-1.  Start Jupyter Notebook:
-    ```bash
-    jupyter notebook
-    ```
-2.  A web page will open. Click on **`main_analysis.ipynb`**.
-3.  In the notebook, you will see cells with code.
-4.  Go to the menu at the top and click **Cell > Run All**.
-5.  Scroll down to see the results!
-
-### Step 4: Changing the Antibiotic
-To analyze a different antibiotic (e.g., Azithromycin instead of Ciprofloxacin):
-1.  Find the cell in `main_analysis.ipynb` that says:
-    ```python
-    ANTIBIOTIC = 'Ciprofloxacin'
-    ```
-2.  Change it to:
-    ```python
-    ANTIBIOTIC = 'Azithromycin'
-    ```
-    (or `'Cefixime'`)
-3.  Re-run the notebook (**Cell > Run All**).
-
-## 4. Understanding the Results
-
-*   **Accuracy**: Percentage of correct predictions.
-*   **F1-Score**: A balanced measure of accuracy (useful if one class is rare).
-*   **Confusion Matrix**: Shows how many resistant samples were correctly predicted vs. missed.
-*   **Feature Importance**: The bar chart at the end shows which DNA sequences (unitigs) are most strongly linked to resistance. You can blast these sequences to find the genes.
-
-## 5. Troubleshooting
-*   **"ModuleNotFoundError"**: Means a library is missing. Run `pip install -r requirements.txt` again.
-*   **"FileNotFoundError"**: Check that your `DATA` folder has the correct files.
+For the research question, reproduced metrics, limitations, and interpretation guidance, read `README.md`.

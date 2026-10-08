@@ -1,0 +1,14 @@
+{
+  "status": "completed",
+  "random_state": 42,
+  "cross_validation": "5-fold StratifiedGroupKFold grouped by complete unitig profile",
+  "modeled_antibiotics": [
+    "Azithromycin",
+    "Ciprofloxacin"
+  ],
+  "descriptive_only": [
+    "Cefixime"
+  ],
+  "upstream_limitation": "Input matrices were already GWAS-filtered; upstream feature-selection leakage cannot be excluded.",
+  "expected_output_count": 17
+}

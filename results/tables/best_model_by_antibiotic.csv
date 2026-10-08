@@ -1,0 +1,3 @@
+antibiotic,model,average_precision
+Azithromycin,Logistic regression,0.9187742403177185
+Ciprofloxacin,Logistic regression,0.9850674795318166

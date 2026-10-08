@@ -1,0 +1,11 @@
+antibiotic,fold,train_samples,test_samples,test_susceptible,test_resistant
+Azithromycin,1,2781,697,607,90
+Azithromycin,2,2783,695,606,89
+Azithromycin,3,2783,695,606,89
+Azithromycin,4,2783,695,606,89
+Azithromycin,5,2782,696,606,90
+Ciprofloxacin,1,2471,617,332,285
+Ciprofloxacin,2,2470,618,332,286
+Ciprofloxacin,3,2470,618,332,286
+Ciprofloxacin,4,2471,617,332,285
+Ciprofloxacin,5,2470,618,332,286

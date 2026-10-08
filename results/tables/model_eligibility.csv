@@ -1,0 +1,4 @@
+antibiotic,modeling_samples,susceptible,resistant,model_comparison,reason
+Azithromycin,3478,3031,447,True,Eligible for exploratory 5-fold comparison
+Ciprofloxacin,3088,1660,1428,True,Eligible for exploratory 5-fold comparison
+Cefixime,3401,3396,5,False,Excluded: fewer than 25 resistant isolates
